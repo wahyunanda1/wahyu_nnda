@@ -1,0 +1,54 @@
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h4><b>Ubah Data Barang Elektronik</b></h4>
+        </div>
+        <div class="card-body">
+			<div class="box-body">
+
+				<form action="<?= base_url('elektronik/update_data'); ?>" method="post">
+					
+					<div class="form-group row">
+				    <div class="col-sm-10">
+				    	<input type="hidden" name="id_barang" value="<?= $id_barang ?>">
+				      <input type="hidden" class="form-control" id="waktu_diinput" name="waktu_diinput" value="<?php $timezone = time() + (60*60*8); echo gmdate('d-m-Y, H:i:s', $timezone); ?>">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang:</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $tb_elektronik->nama_barang ?>">
+				    </div>
+				  </div>
+				   <div class="form-group row">
+				    <label for="kondisi_barang" class="col-sm-2 col-form-label">Kondisi Barang:</label>
+				    <div class="col-sm-10">
+				      <select name="kondisi_barang" class="form-control">
+				      	<?php $kelayakan = $tb_elektronik->kondisi_barang; ?>
+                      <option value="">.....</option>
+                      <option value="Layak" <?= $kelayakan == 'Layak' ? 'selected' : '' ?> >Layak </option>
+                      <option value="Tidak Layak" <?= $kelayakan == 'Tidak Layak' ? 'selected' : '' ?> > Tidak Layak </option>
+                    </select>
+				    </div>
+				  </div>
+				   <div class="form-group row">
+				    <label for="jumlah" class="col-sm-2 col-form-label">Jumlah:</label>
+				    <div class="col-sm-10">
+				      <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah Barang..." value="<?php echo $tb_elektronik->jumlah; ?>">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col-sm-10">
+				      <button type="submit" name="edit" class="btn btn-primary" style="font-size: 15px;"><i class="fa fa-edit"></i> Ubah</button>
+				       <a href="<?= base_url('elektronik'); ?>" class="btn btn-success" style="font-size: 15px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
+				    </div>
+				  </div>
+
+				</form>
+            	</div>
+            	
+            </div>
+        </div>
+    </div>
