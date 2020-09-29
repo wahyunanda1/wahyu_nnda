@@ -41,7 +41,7 @@
 				  </div>
 				  <div class="form-group row">
 				    <div class="col-sm-10">
-				      <button class="btn btn-info tombol-edit" type="submit" name="edit" style="font-size: 15px;"><i class="fa fa-edit"></i> Ubah</button>
+				      <button class="btn btn-info tombol-edit" id="btn-submit" type="submit" name="edit" style="font-size: 15px;"><i class="fa fa-edit"></i> Ubah</button>
 				       <a href="<?= base_url('elektronik'); ?>" class="btn btn-success" style="font-size: 15px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
 				    </div>
 				  </div>

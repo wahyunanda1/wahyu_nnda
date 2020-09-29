@@ -40,8 +40,9 @@
 		    }
 		  })
 	})
+	hhhh
 
-	$(".tombol-edit").click(function(e) {
+	$(".tombol-edit").on('click', '#btn-submit', function(e) {
 		  e.preventDefault();
 		  Swal.fire({
 		    title: 'Ubah Data Barang',
