@@ -7,6 +7,7 @@ class Elektronik extends CI_Controller {
 	{
 		$judul['judul'] = 'Halaman Elektronik';
 		$data['tb_elektronik'] = $this->db->get('tb_elektronik')->result();
+		$script['script'] = $this->load->view('elektronik/script.js', '', TRUE);
 		// $data['elektronik'] = $this->m_elektronik->tampil_data()->result();
 		// $data['tb_elektronik'] = 'tes';
 		
@@ -14,7 +15,7 @@ class Elektronik extends CI_Controller {
 		$this->load->view('layout/header', $judul);
 		$this->load->view('layout/sidebar', $data);
 		$this->load->view('elektronik/view', $data);
-		$this->load->view('layout/footer');
+		$this->load->view('layout/footer', isset($script) ? $script : '');
 	}
 	public function add()
 	{
@@ -40,13 +41,25 @@ class Elektronik extends CI_Controller {
 		); 
 		
 		$tambah = $this->m_elektronik->input_data($data, 'tb_elektronik');
+		if ($tambah) {
+			$this->session->set_flashdata("status", "berhasil-tambah-data");
+		}
+		else {
+			$this->session->set_flashdata("status", "gagal-tambah-data");
+		}
 		redirect('elektronik/index');
 	}
 
 		public function hapus($id_barang)
 	{
 		$where = array('id_barang'	=>$id_barang);
-		$this->m_elektronik->hapus_data($where, 'tb_elektronik');
+		$hapus = $this->m_elektronik->hapus_data($where, 'tb_elektronik');
+		if ($hapus) {
+			$this->session->set_flashdata("status", "berhasil-hapus-data");
+		}
+		else {
+			$this->session->set_flashdata("status", "gagal-hapus-data");
+		}
 		redirect('elektronik/index');
 	}
 	public function edit($id_barang)
@@ -84,7 +97,13 @@ class Elektronik extends CI_Controller {
 		);
 
 		$where = array('id_barang' =>$id_barang);
-		$this->m_elektronik->update_data($where, $data, 'tb_elektronik');
+		$edit = $this->m_elektronik->update_data($where, $data, 'tb_elektronik');
+		if ($edit) {
+			$this->session->set_flashdata("status", "berhasil-ubah-data");
+		}
+		else {
+			$this->session->set_flashdata("status", "gagal-ubah-data");
+		}
 		redirect('elektronik/index');
 	}
 }

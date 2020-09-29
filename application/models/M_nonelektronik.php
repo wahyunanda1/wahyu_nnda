@@ -9,12 +9,12 @@ class M_nonelektronik extends CI_Model {
 	}
 	public function input_data($data,$table)
 	{
-		$this->db->insert($table,$data);
+		return $this->db->insert($table,$data);
 	}
 	public function hapus_data($where,$table)
 	{
 		$this->db->where($where);
-		$this->db->delete($table);
+		return $this->db->delete($table);
 	}
 	public function edit_data($where,$table)
 	{
@@ -23,12 +23,6 @@ class M_nonelektronik extends CI_Model {
 	public function update_data($where,$data,$table)
 	{
 		$this->db->where($where);
-		$this->db->update($table,$data);
+		return $this->db->update($table,$data);
 	}
-	public function detail_data($id_barang = NULL)
-	{
-		$query = $this->db->get_where('tb_nonelektronik', array('id_barang'	=>$id_barang))->row();
-		return $query;
-	}
-
 }

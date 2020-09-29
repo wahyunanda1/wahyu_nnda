@@ -18,6 +18,10 @@
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url('assets/'); ?>css/sb-admin-2.css" rel="stylesheet">
   <link href="<?php echo base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- <link href="<?php echo base_url('assets/'); ?>dist/sweetalert2.css" rel="stylesheet"> -->
+  <link href="<?php echo base_url('assets/'); ?>dist/sweetalert2.min.css" rel="stylesheet">
+  <!-- base_url('assets/') ?>dist/sweetalert2.all.min.css -->
+
  <style>
     /* For mobile phones: */
 [class*="card-"] {

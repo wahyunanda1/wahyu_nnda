@@ -10,7 +10,9 @@
                 <a href="<?= base_url('elektronik/add');  ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Barang</a>
               </div>
               <br>
-           <div class="box-body" style="overflow-x: auto;">
+           <div class="box-body" style="overflow-x: auto; overflow-y: auto;">
+              <?php $status = $this->session->flashdata('status') ;?>
+              <div style="display: none" id="status" data-status="<?= $status ?? '' ?>"></div>
               <table id="example1" class="table table-bordered table-striped" style="text-align: center;">
                   <thead>
                     <tr>
@@ -24,7 +26,6 @@
                   </thead>
                   <?php 
                           $id_barang = 1;
-
                           foreach ($tb_elektronik as $tb_elk) {
                      ?>
                   <tbody>
@@ -34,11 +35,10 @@
                       <td><?= $tb_elk->nama_barang ?></td>
                       <td><?= $tb_elk->kondisi_barang ?></td>
                       <td><?= $tb_elk->jumlah ?></td>
-                      <td>   
+                      <td> 
                         <a href="<?php echo base_url('elektronik/edit/').$tb_elk->id_barang;?>" class="btn btn-success" style="font-size: 13px;"><i class="fa fa-edit"></i> Ubah</a>
-                        <a href="<?php echo base_url('elektronik/hapus/').$tb_elk->id_barang;?>" class="btn btn-danger" style="font-size: 13px;" onclick="return confirm('Data barang akan dihapus, Yakin?');" ><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a> 
+                        <a class="btn btn-danger tombol-hapus" style="font-size: 13px;" href="<?php echo base_url('elektronik/hapus/').$tb_elk->id_barang;?>"><i class="fa fa-trash" aria-hidden="true"></i>Hapus</a>
                       </td>
-                      
                     </tr>   
                   <?php } ?>
                   </tbody>

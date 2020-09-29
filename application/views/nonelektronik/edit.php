@@ -41,7 +41,7 @@
 				  </div>
 				  <div class="form-group row">
 				    <div class="col-sm-10">
-				      <button type="submit" name="edit" class="btn btn-primary" style="font-size: 15px;"><i class="fa fa-edit"></i> Ubah</button>
+				      <button type="submit" name="edit" class="btn btn-info tombol-edit" style="font-size: 15px;"><i class="fa fa-edit"></i> Ubah</button>
 				       <a href="<?= base_url('nonelektronik'); ?>" class="btn btn-success" style="font-size: 15px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
 				    </div>
 				  </div>

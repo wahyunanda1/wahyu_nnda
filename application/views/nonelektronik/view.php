@@ -10,7 +10,9 @@
                 <a href="<?= base_url('nonelektronik/add');  ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data Barang</a>
               </div>
               <br>
-           <div class="box-body" style="overflow-x: auto;">
+           <div class="box-body" style="overflow-x: auto; overflow-y: auto;">
+            <?php $status = $this->session->flashdata('status') ;?>
+              <div style="display: none" id="status" data-status="<?= $status ?? '' ?>"></div>
               <table id="example1" class="table table-bordered table-striped" style="text-align: center;">
                   <thead>
                     <tr>
@@ -35,8 +37,8 @@
                       <td><?= $tb_nlk->kondisi_barang ?></td>
                       <td><?= $tb_nlk->jumlah ?></td>
                       <td>   
-                        <a href="<?= base_url('nonelektronik/edit/'.$tb_nlk->id_barang) ?>" class="btn btn-success" style="font-size: 13px;"><i class="fa fa-edit"></i> Ubah</a>
-                        <a href="<?= base_url('nonelektronik/hapus/'.$tb_nlk->id_barang) ?>" class="btn btn-danger" style="font-size: 13px;" onclick="return confirm('Data barang akan dihapus, Yakin?');" ><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a> 
+                        <a href="<?php echo base_url('nonelektronik/edit/').$tb_nlk->id_barang;?>" class="btn btn-success" style="font-size: 13px;"><i class="fa fa-edit"></i> Ubah</a>
+                        <a class="btn btn-danger tombol-hapus" style="font-size: 13px;" href="<?php echo base_url('nonelektronik/hapus/').$tb_nlk->id_barang;?>"><i class="fa fa-trash" aria-hidden="true"></i>Hapus</a> 
                       </td>
                       
                     </tr>   

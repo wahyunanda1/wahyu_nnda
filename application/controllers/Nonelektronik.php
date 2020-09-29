@@ -7,6 +7,7 @@ class Nonelektronik extends CI_Controller {
 	{
 		$judul['judul'] = 'Halaman Non Elektronik';
 		$data['tb_nonelektronik'] = $this->db->get('tb_nonelektronik')->result();
+		$script['script'] = $this->load->view('elektronik/script.js', '', TRUE);
 		// $data['elektronik'] = $this->m_elektronik->tampil_data()->result();
 		// $data['tb_elektronik'] = 'tes';
 		
@@ -14,7 +15,7 @@ class Nonelektronik extends CI_Controller {
 		$this->load->view('layout/header', $judul);
 		$this->load->view('layout/sidebar', $data);
 		$this->load->view('nonelektronik/view', $data);
-		$this->load->view('layout/footer');
+		$this->load->view('layout/footer', isset($script) ? $script : '');
 	}
 	public function add()
 	{
@@ -37,16 +38,29 @@ class Nonelektronik extends CI_Controller {
 			'nama_barang' => $nama_barang,
 			'kondisi_barang' => $kondisi_barang,
 			'jumlah' => $jumlah
-		); 
-		
+		);
+
 		$tambah = $this->m_nonelektronik->input_data($data, 'tb_nonelektronik');
+		if ($tambah) {
+			$this->session->set_flashdata("status", "berhasil-tambah-data");
+		}
+		else {
+			$this->session->set_flashdata("status", "gagal-tambah-data");
+		}
 		redirect('nonelektronik/index');
+		
 	}
 
 		public function hapus($id_barang)
 	{
 		$where = array('id_barang'	=>$id_barang);
-		$this->m_nonelektronik->hapus_data($where, 'tb_nonelektronik');
+		$hapus = $this->m_nonelektronik->hapus_data($where, 'tb_nonelektronik');
+		if ($hapus) {
+			$this->session->set_flashdata("status", "berhasil-hapus-data");
+		}
+		else {
+			$this->session->set_flashdata("status", "gagal-hapus-data");
+		}
 		redirect('nonelektronik/index');
 	}
 	public function edit($id_barang)
@@ -84,7 +98,13 @@ class Nonelektronik extends CI_Controller {
 		);
 
 		$where = array('id_barang' =>$id_barang);
-		$this->m_nonelektronik->update_data($where, $data, 'tb_nonelektronik');
+		$edit = $this->m_nonelektronik->update_data($where, $data, 'tb_nonelektronik');
+		if ($edit) {
+			$this->session->set_flashdata("status", "berhasil-ubah-data");
+		}
+		else {
+			$this->session->set_flashdata("status", "gagal-ubah-data");
+		}
 		redirect('nonelektronik/index');
 	}
 }
