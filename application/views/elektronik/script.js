@@ -15,6 +15,14 @@
 		  })
 	}
 
+	else if (status == "berhasil-hapus-data") {
+		Swal.fire({
+		    title: 'Berhasil',
+		    text: 'Data Barang berhasil dihapus',
+		    icon: 'success'
+		  })
+	}
+
 	$(".tombol-hapus").click(function(e) {
 		  e.preventDefault();
 		  Swal.fire({
@@ -40,31 +48,3 @@
 		    }
 		  })
 	})
-	hhhh
-
-	$(".tombol-edit").on('click', '#btn-submit', function(e) {
-		  e.preventDefault();
-		  Swal.fire({
-		    title: 'Ubah Data Barang',
-		    text: 'Anda Yakin Ingin Mengubah Data Barang?',
-		    icon: 'warning',
-		    showCancelButton: true,
-		    confirmButtonText: 'Ya, Ubah!',
-		    cancelButtonText: 'Batal'
-		  }).then((result) => {
-
-		    if (result.value) {
-		    	window.location = $(this).attr('submit');
-		      
-		    // For more information about handling dismissals please visit
-		    // https://sweetalert2.github.io/#handling-dismissals
-		    } else if (result.dismiss === Swal.DismissReason.cancel) {
-		      Swal.fire(
-		        'Di Batalkan!',
-		        'Data Anda Dalam Keadaan Aman :)',
-		        'error'
-		      )
-		    }
-		  })
-	})
-                       
