@@ -8,7 +8,7 @@
         <div class="card-body">
 			<div class="box-body">
 
-				<form action="<?= base_url('elektronik/update_data'); ?>" method="post">
+				<form action="<?= base_url('elektronik/update_data'); ?>" method="post" id="form-submit">
 					
 					<div class="form-group row">
 				    <div class="col-sm-10">

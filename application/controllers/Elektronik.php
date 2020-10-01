@@ -69,6 +69,7 @@ class Elektronik extends CI_Controller {
 		$data['tb_elektronik'] = $this->db->get_where('tb_elektronik',
 			['id_barang' => $id_barang])->row();
 		$data['id_barang'] = $id_barang;
+		$data['script'] = $this->load->view('elektronik/script_edit.js', '', TRUE);
 		// var_dump($data['tb_elektronik']);
 		// die();
 

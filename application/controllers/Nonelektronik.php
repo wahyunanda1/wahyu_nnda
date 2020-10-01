@@ -70,6 +70,7 @@ class Nonelektronik extends CI_Controller {
 		$data['tb_nonelektronik'] = $this->db->get_where('tb_nonelektronik',
 			['id_barang' => $id_barang])->row();
 		$data['id_barang'] = $id_barang;
+		$data['script'] = $this->load->view('nonelektronik/script_edit.js', '', TRUE);
 		// var_dump($data['tb_elektronik']);
 		// die();
 
