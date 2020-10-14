@@ -69,7 +69,7 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <span style="margin-top: 7px;"><h4><b>Hai! Admin.....</b></h4></span>
+          <span style="margin-top: 7px;"><h4><b>Hai! Admin</b></h4></span>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
               

@@ -5,7 +5,21 @@
         <!-- Nested Row within Card Body -->
         <div class="row">
           <div class="col-lg">
-            <div class="p-5">
+            <style>
+                  img{
+                    padding-top: 20px;
+                    margin-bottom: auto;
+                    margin-top: auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                    width: 130px;
+                  }
+                </style>
+                <div class="logo">
+                   <img src="<?php echo base_url('assets/img/Smik04.png')?>" id ="Smik04 Logo">
+                </div>
+            <div class="p-3">
               <div class="text-center">
                  <h4 class="h4 text-gray-900 mb-4"><b>INVENTARISASI SEKOLAH</b></h4>
                 <h5 class="h5 text-gray-900 mb-4">Registrasi Akun!</h5>
