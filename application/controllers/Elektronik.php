@@ -7,6 +7,7 @@ class Elektronik extends CI_Controller {
 	{
 		$judul['judul'] = 'Halaman Elektronik';
 		$data['tb_elektronik'] = $this->db->get('tb_elektronik')->result();
+		// $data['tb_elektronik'] = $this->m_elektronik->tampil_data();
 		$script['script'] = $this->load->view('elektronik/script.js', '', TRUE);
 		// $data['elektronik'] = $this->m_elektronik->tampil_data()->result();
 		// $data['tb_elektronik'] = 'tes';
@@ -19,12 +20,51 @@ class Elektronik extends CI_Controller {
 	}
 	public function add()
 	{
+		$data = array(
+			"kondisi_barang" => ""
+		);
 		$this->load->view('layout/header');
 		$this->load->view('layout/sidebar');
-		$this->load->view('elektronik/input');
+		$this->load->view('elektronik/input', $data);
 		$this->load->view('layout/footer');
 	}
 	public function tambah_aksi(){
+
+		// validasi form
+		// $this->load->helper(array('form', 'url'));
+  //       $this->load->library('form_validation');
+  //       $this->form_validation->set_rules('nama_barang','Nama Barang','required');
+
+  //       $validasi = $this->form_validation->run();
+  //       // var_dump($validasi);
+  //       // var_dump(form_error("nama_barang"));
+  //       // die();	
+
+  //      	if (!$validasi) {
+
+  //      		redirect('elektronik/add');
+  //      		exit();
+  //      	}
+		$this->form_validation->set_message('required', 'field {field} tidak boleh kosong');
+		$this->form_validation->set_rules('nama_barang','Nama Barang','required');
+		$this->form_validation->set_rules('kondisi_barang', 'Kondisi Barang', 'required' );
+		$this->form_validation->set_rules('jumlah','Jumlah','required');
+
+
+		if ($this->form_validation->run() == false) {
+			$data = array(
+				"kondisi_barang" => set_value('kondisi_barang')
+			);
+			$this->load->view('layout/header');
+			$this->load->view('layout/sidebar');
+			$this->load->view('elektronik/input', $data);
+			$this->load->view('layout/footer');
+		} else {
+			$data = [
+				'nama_barang' => htmlspecialchars( trim($this->input->post('nama_barang', true)) ),
+				'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
+			];
+
 
 		$waktu_diinput = $this->input->post('waktu_diinput');
 		$id_barang = $this->input->post('id_barang');
@@ -35,10 +75,12 @@ class Elektronik extends CI_Controller {
 
 		$data = array(
 			'waktu_diinput' => $waktu_diinput,
-			'nama_barang' => $nama_barang,
+			'nama_barang' => trim($nama_barang),
 			'kondisi_barang' => $kondisi_barang,
 			'jumlah' => $jumlah
 		); 
+
+
 		
 		$tambah = $this->m_elektronik->input_data($data, 'tb_elektronik');
 		if ($tambah) {
@@ -49,6 +91,7 @@ class Elektronik extends CI_Controller {
 		}
 		redirect('elektronik/index');
 	}
+}
 
 		public function hapus($id_barang)
 	{
@@ -80,8 +123,26 @@ class Elektronik extends CI_Controller {
 		$this->load->view('elektronik/edit', $data);
 		$this->load->view('layout/footer');
 	}
-	public function update_data()
+	public function update_data($id_barang)
 	{
+		$this->form_validation->set_message('required', 'field {field} tidak boleh kosong');
+		$this->form_validation->set_rules('nama_barang','Nama Barang','required');
+		$this->form_validation->set_rules('kondisi_barang', 'Kondisi Barang', 'required' );
+		$this->form_validation->set_rules('jumlah','Jumlah','required');
+
+
+		if ($this->form_validation->run() == false) {
+			$data = array(
+				"kondisi_barang" => set_value('kondisi_barang'),
+				"id_barang" => $id_barang
+			);
+			$this->load->view('layout/header');
+			$this->load->view('layout/sidebar');
+			$this->load->view('elektronik/update_data', $data);
+			$this->load->view('layout/footer');
+			return;
+		}
+
 		$waktu_diinput = $this->input->post('waktu_diinput');
 		$id_barang = $this->input->post('id_barang');
 		$nama_barang = $this->input->post('nama_barang');
@@ -91,7 +152,7 @@ class Elektronik extends CI_Controller {
 
 		$data = array(
 			'waktu_diinput' => $waktu_diinput,
-			'nama_barang' => $nama_barang,
+			'nama_barang' => trim($nama_barang),
 			'kondisi_barang' => $kondisi_barang,
 			'jumlah' => $jumlah
 		

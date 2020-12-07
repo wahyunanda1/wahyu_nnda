@@ -4,7 +4,7 @@
   <div id="wrapper">
 
  <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -69,7 +69,13 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-          <span style="margin-top: 7px;"><h4><b>Hai! Admin</b></h4></span>
+          <span style="margin-top: 7px; margin-left: 30px;">
+            <?php 
+            $rows = $this->db->query("SELECT nama FROM login")->row_array();
+
+            echo "<b><h4>Hai! $rows[nama]</h4></b>"
+             ?>
+          </span>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
               
@@ -79,17 +85,13 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">SMKN 4 KENDARI</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/03/60x60">
+                <img class="img-profile rounded-circle" src="<?php echo base_url('assets/img/Smik.jpg')?>" id ="Smik04 Logo">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="https://www.smkn4kendari.sch.id/">
                   <i class="fas fa-school fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profil Sekolah
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<?= base_url('auth/logout');  ?>" data-toggle="modal" data-target="#logoutModal">

@@ -1,0 +1,150 @@
+
+.login-wrap {
+	padding-top: 2rem;
+}
+
+.login-content {
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+}
+
+.validated .input.is-valid {
+	border-color: #28a745;
+}
+
+.validated .input.is-invalid {
+	border-color: #dc3545;
+}
+
+.input {
+	display: block;
+	width: 100%;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 1rem;
+	font-weight: 400;
+	border-radius: 2rem;
+	/*border-top: none;*/
+	/*border-left: none;*/
+	border: 1px solid lightblue;
+	color: #495057;
+	/*border-color: lightblue;*/
+	outline: 0;
+}
+
+.button {
+	display: block;
+	width: 100%;
+	padding: .375rem .75rem;
+	border-radius: 2rem;
+	border: none;
+	color: white;
+	font-size: 1rem;
+	font-weight: 400;
+	background-color: #1896fb;
+	outline: none;
+	-webkit-transition: background-color .3s;
+	-o-transition: background-color .3s;
+	transition: background-color .3s;
+}
+
+.button:hover {
+	background-color: #0680e2;
+}
+
+.button:focus {
+	outline: none;
+}
+
+.grafik-wrapper {
+	display: block;	
+	border-radius: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+	-webkit-box-shadow: 3px 10px 50px -5px rgba(0, 0, 0, 0.375);
+	        box-shadow: 3px 10px 50px -5px rgba(0, 0, 0, 0.375);
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+	/*box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);*/
+}
+
+.grafik-wrapper:hover {
+	-webkit-box-shadow: 3px 10px 50px -5px rgba(0, 0, 0, 0.675);
+	        box-shadow: 3px 10px 50px -5px rgba(0, 0, 0, 0.675);
+}
+
+.grafik-content {
+	text-align: center;
+}
+
+.grafik-content .grafik-icon {
+	margin-right: 15px;
+	line-height: 1.2;
+	display: inline-block;
+}
+
+.grafik-content .grafik-icon i {
+	font-size: 10px;
+	color: #fff;
+
+}
+
+.grafik-content .grafik-text {
+	display: inline-block;
+}
+
+.grafik-content .grafik-text h2 {
+	font-weight: 300;
+	color: #fff;
+	font-size: 36px;
+	line-height: 1;
+	margin-bottom: 5px;
+}
+
+.grafik-content .grafik-text span {
+	font-size: 18px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.grafik-info {
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+
+.grafik-info .grafik-icon {
+	display: inline-block;
+}
+
+.grafik-info .grafik-icon i {
+	font-size: 36px;
+	color: #fff;
+}
+
+.grafik-info .grafik-title {
+	display: inline-block;
+	color: #abaaaa;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+}
+
+@media (max-width: 767px) {
+	footer {
+		position: relative;
+		bottom: none;
+	}
+}
+
+
+
+
+

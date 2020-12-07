@@ -10,6 +10,7 @@ class Home extends MY_Controller{
 		$data['tb_elektronik'] = $this->db->get_where('tb_elektronik',['nama_barang' => $this->session->userdata('nama_barang')])->row_array();
 		$data['tb_nonelektronik'] = $this->db->get_where('tb_nonelektronik',['nama_barang' => $this->session->userdata('nama_barang')])->row_array();
 		$data['script'] = $this->load->view('script_home.js', '', TRUE);
+		// $data["admin"] = $this->db->get_where('login',array('nama'=>''))->num_rows();
 		$this->load->view('layout/header', $judul);
 		$this->load->view('layout/sidebar', $data);
 		$this->load->view('home', $data);

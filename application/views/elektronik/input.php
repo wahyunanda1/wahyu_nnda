@@ -16,23 +16,38 @@
 				  <div class="form-group row">
 				    <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang:</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Masukan Nama Barang...">
-				    </div>
+				      <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Masukan Nama Barang..." value="<?= set_value('nama_barang')?>" autocomplete="off">
+				      <?= form_error('nama_barang', '<small class="text-danger pl-2">', '</small>');  ?>
+				      </div>
 				  </div>
 				   <div class="form-group row">
 				    <label for="kondisi_barang" class="col-sm-2 col-form-label">Kondisi Barang:</label>
 				    <div class="col-sm-10">
-				      <select name="kondisi_barang" class="form-control">
+				      <!-- <select name="kondisi_barang" class="form-control">
                       <option value="">.....</option>
                       <option value="Layak"> Layak </option>
                       <option value="Tidak Layak"> Tidak Layak </option>
-                    </select>
+                    </select> -->
+                    <?php 
+                    	$pilihan = array(
+                    		'' => '....',
+                    		'layak' => 'layak',
+                    		'tidak layak' => 'tidak layak'
+                    	);
+                    	$attribut = array(
+                    		"class" => "form-control"
+                    	);
+                     ?>
+                    <?= form_dropdown('kondisi_barang', $pilihan, $kondisi_barang, $attribut) ?>
+                    <?= form_error('kondisi_barang', '<small class="text-danger pl-2">', '</small>');  ?>
+
 				    </div>
 				  </div>
 				   <div class="form-group row">
 				    <label for="jumlah" class="col-sm-2 col-form-label">Jumlah:</label>
 				    <div class="col-sm-10">
-				      <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah Barang...">
+				      <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah Barang..."  value="<?= set_value('jumlah')?>">
+				       <?= form_error('jumlah', '<small class="text-danger pl-2">', '</small>');  ?>
 				    </div>
 				  </div>
 				  

@@ -32,7 +32,7 @@
                   <?= $this->session->flashdata('message');  ?>
                   <form class="user" method="post" action="<?= base_url('auth');  ?>">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan alamat email anda..." value="<?= set_value('email'); ?>">
+                      <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan alamat email anda..." value="<?= set_value('email'); ?>" autocomplete="off" required>
                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>');  ?>
                     </div>
                     <div class="form-group">

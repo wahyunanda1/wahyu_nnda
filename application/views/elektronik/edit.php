@@ -8,10 +8,11 @@
         <div class="card-body">
 			<div class="box-body">
 
-				<form action="<?= base_url('elektronik/update_data'); ?>" method="post" id="form-submit">
+				<form action="<?= base_url('elektronik/update_data/' . $id_barang); ?>" method="post" id="form-submit">
 					
 					<div class="form-group row">
 				    <div class="col-sm-10">
+				    	<!-- <input type="hidden" name="id_barang" value="<?= $id_barang ?>"> -->
 				    	<input type="hidden" name="id_barang" value="<?= $id_barang ?>">
 				      <input type="hidden" class="form-control" id="waktu_diinput" name="waktu_diinput" value="<?php $timezone = time() + (60*60*8); echo gmdate('d-m-Y, H:i:s', $timezone); ?>">
 				    </div>
@@ -22,7 +23,7 @@
 				      <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $tb_elektronik->nama_barang ?>">
 				    </div>
 				  </div>
-				   <div class="form-group row">
+				   <!-- <div class="form-group row">
 				    <label for="kondisi_barang" class="col-sm-2 col-form-label">Kondisi Barang:</label>
 				    <div class="col-sm-10">
 				      <select name="kondisi_barang" class="form-control">
@@ -32,7 +33,30 @@
                       <option value="Tidak Layak" <?= $kelayakan == 'Tidak Layak' ? 'selected' : '' ?> > Tidak Layak </option>
                     </select>
 				    </div>
-				  </div>
+				  </div> -->
+				  <div class="form-group row">
+				    <label for="kondisi_barang" class="col-sm-2 col-form-label">Kondisi Barang:</label>
+				    <div class="col-sm-10">
+				      <!-- <select name="kondisi_barang" class="form-control">
+		              <option value="">.....</option>
+		              <option value="Layak"> Layak </option>
+		              <option value="Tidak Layak"> Tidak Layak </option>
+		            </select> -->
+		            <?php 
+		            	$pilihan = array(
+		            		'' => '....',
+		            		'layak' => 'layak',
+		            		'tidak layak' => 'tidak layak'
+		            	);
+		            	$attribut = array(
+		            		"class" => "form-control"
+		            	);
+		             ?>
+		            <?= form_dropdown('kondisi_barang', $pilihan, $tb_elektronik->kondisi_barang, $attribut) ?>
+		            <?= form_error('kondisi_barang', '<small class="text-danger pl-2">', '</small>');  ?>
+
+				    </div>
+				   </div>
 				   <div class="form-group row">
 				    <label for="jumlah" class="col-sm-2 col-form-label">Jumlah:</label>
 				    <div class="col-sm-10">

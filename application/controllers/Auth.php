@@ -10,6 +10,83 @@ class Auth extends MY_Controller
 		$this->load->library('form_validation');
 
 	}
+
+	public function halaman_utama() {
+
+		// $data["elektronik"] = $this->db->select('id_barang, waktu_diinput, nama_barang, sum(kondisi_barang) AS kondisi_barang')->from("tb_elektronik")
+		// 		->group_by(array("kondisi_barang"))
+		// 		->order_by("waktu_diinput", "DESC")->get()->result();
+
+		// $data["nonelektronik"] = $this->db->select('id_barang, waktu_diinput, nama_barang, sum(kondisi_barang) AS kondisi_barang')->from("tb_nonelektronik")
+		// 		->group_by(array("kondisi_barang"))
+		// 		->order_by("waktu_diinput", "DESC")->get()->result();
+		// // var_dump($data);
+		
+		$data["elektronik_layak"] = $this->db->get_where('tb_elektronik',array('kondisi_barang'=>'layak'))->num_rows();
+		$data['keterangan_elektroniklyk'] = "ELEKTRONIK LAYAK";
+		// $data["data_layak"] = $this->db->get_where('tb_elektronik',array('kondisi_barang'=>'layak'))->result();
+		$data["elektronik_tidak_layak"] = $this->db->get_where('tb_elektronik',array('kondisi_barang'=>'tidak layak'))->num_rows();
+		$data['keterangan_elektroniktdklyk'] = "ELEKTRONIK TIDAK LAYAK";
+		$data["nonelektronik_layak"] = $this->db->get_where('tb_nonelektronik',array('kondisi_barang'=>'layak'))->num_rows();
+		$data['keterangan_nonelektroniklyk'] = "NON-ELEKTRONIK LAYAK";
+		$data["nonelektronik_tidak_layak"] = $this->db->get_where('tb_nonelektronik',array('kondisi_barang'=>'tidak layak'))->num_rows();
+		$data['keterangan_nonelektroniktdklyk'] = "NON-ELEKTRO TIDAK LAYAK";
+		// $data["data_tidaklayak"] = $this->db->get_where('tb_elektronik',array('kondisi_barang'=>'tidak layak'))->result();
+
+		// $data["layak"] = $this->db->get_where('tb_nonelektronik',array('kondisi_barang'=>'layak'))->num_rows();
+		// $data["data_layak"] = $this->db->get_where('tb_nonelektronik',array('kondisi_barang'=>'layak'))->result();
+		// $data["tidak layak"] = $this->db->get_where('tb_nonelektronik',array('kondisi_barang'=>'tidak layak'))->num_rows();
+		// $data["data_layak"] = $this->db->get_where('tb_nonelektronik',array('kondisi_barang'=>'layak'))->result();
+
+
+		$this->load->view('halaman_utama/login', $data);
+		// $this->load->view('templates/auth_footer');
+	}
+
+	public function informasi_elektronik_layak() {
+		$data["tb_elektronik"] = $this->db->select('id_barang, waktu_diinput, nama_barang, kondisi_barang, sum(jumlah) AS jumlah')->from("tb_elektronik")
+				->group_by(array("nama_barang", "kondisi_barang"))
+				->where("kondisi_barang", "layak")
+				->order_by("waktu_diinput", "DESC")->get()->result();
+
+		$data['keterangan'] = "DATA BARANG ELEKTRONIK LAYAK";
+
+		$this->load->view("auth/informasi_elektronik.php", $data);
+	}
+
+	public function informasi_elektronik_tidak_layak() {
+		$data["tb_elektronik"] = $this->db->select('id_barang, waktu_diinput, nama_barang, kondisi_barang, sum(jumlah) AS jumlah')->from("tb_elektronik")
+				->group_by(array("nama_barang", "kondisi_barang"))
+				->where("kondisi_barang", "tidak layak")
+				->order_by("waktu_diinput", "DESC")->get()->result();
+
+		$data['keterangan'] = "DATA BARANG ELEKTRONIK TIDAK LAYAK";
+
+		$this->load->view("auth/informasi_elektronik.php", $data);
+	}
+
+	public function informasi_nonelektronik_layak() {
+		$data["tb_nonelektronik"] = $this->db->select('id_barang, waktu_diinput, nama_barang, kondisi_barang, sum(jumlah) AS jumlah')->from("tb_nonelektronik")
+				->group_by(array("nama_barang", "kondisi_barang"))
+				->where("kondisi_barang", "layak")
+				->order_by("waktu_diinput", "DESC")->get()->result();
+
+		$data['keterangan'] = "DATA BARANG NON-ELEKTRONIK LAYAK";
+
+		$this->load->view("auth/informasi_nonelektronik.php", $data);
+	}
+
+		public function informasi_nonelektronik_tidak_layak() {
+		$data["tb_nonelektronik"] = $this->db->select('id_barang, waktu_diinput, nama_barang, kondisi_barang, sum(jumlah) AS jumlah')->from("tb_nonelektronik")
+				->group_by(array("nama_barang", "kondisi_barang"))
+				->where("kondisi_barang", "tidak layak")
+				->order_by("waktu_diinput", "DESC")->get()->result();
+
+		$data['keterangan'] = "DATA BARANG NON-ELEKTRONIK TIDAK LAYAK";
+
+		$this->load->view("auth/informasi_nonelektronik.php", $data);
+	}
+
 	public function index()
 	{
 		// var_dump($this->session->get_userdata());
@@ -28,6 +105,7 @@ class Auth extends MY_Controller
 		}
 
 	}
+
 	public function login()
 	{
 		$email = $this->input->post('email');
@@ -101,7 +179,7 @@ class Auth extends MY_Controller
 			$this->db->insert('login_token', $login_token);
 			$this->_sendEmail($token, 'verify');
 
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Selamat akun anda telah berhasil dibuat. Silahkan aktivasi akun lalu masuk!</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Selamat akun anda telah berhasil dibuat. Silahkan aktivasi akun melalui Gmail, lalu masuk!</div>');
 			redirect('auth');
 
 		}
@@ -130,8 +208,8 @@ class Auth extends MY_Controller
 			$this->email->set_mailtype("html");
 
 			if ($type == 'verify') {
-				$this->email->subject('Verifikasi Akun');
-				$this->email->message('Silahkan Klik Link Ini Untuk Aktivasi Akun Anda : <br><a href="'. base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktivasi</a>');
+				$this->email->subject('Aktivasi Akun');
+				$this->email->message('Halo Guru! <br> Selamat! Anda telah berhasil Registrasi Akun INVENTARISASI SEKOLAH. <br> Silahkan Klik Link Ini Untuk Aktivasi Akun Anda : <br><a href="'. base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktivasi</a> <br> Terima Kasih,<br> Dari, Wahyu Nanda Putra');
 			} else if($type == 'forgot') {
 				$this->email->subject('Ganti Password');
 				$this->email->message('Silahkan Klik Link Ini Untuk Ganti Password Anda : <br><a href="'. base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Ganti Password</a>');	
@@ -155,7 +233,7 @@ class Auth extends MY_Controller
 			$data['akun_aktif'] = 1;
 			$this->db->where('email', $email);
 			$this->db->update('login', $data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Selamat akun anda berhasil diaktivasi. Silahkan masuk menggunakan akun anda!</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Selamat akun anda berhasil diaktivasi. Silahkan masuk menggunakan akun anda! Gunakan Mode Landscape untuk Tampilan Kompleks.</div>');
 			redirect('auth');
 
 		}

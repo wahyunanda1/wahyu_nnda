@@ -28,6 +28,7 @@
                   <tbody>
                     <?php 
                           $id_barang = 1;
+                        
                           foreach($tb_nonelektronik as $tb_nlk) {
                      ?>
                     <tr>
@@ -37,8 +38,9 @@
                       <td><?= $tb_nlk->kondisi_barang ?></td>
                       <td><?= $tb_nlk->jumlah ?></td>
                       <td>   
-                        <a href="<?php echo base_url('nonelektronik/edit/').$tb_nlk->id_barang;?>" class="btn btn-success" style="font-size: 13px;"><i class="fa fa-edit"></i> Ubah</a>
-                        <a class="btn btn-danger tombol-hapus" style="font-size: 13px;" href="<?php echo base_url('nonelektronik/hapus/').$tb_nlk->id_barang;?>"><i class="fa fa-trash" aria-hidden="true"></i>Hapus</a> 
+                        <a href="<?php echo base_url('nonelektronik/edit/').$tb_nlk->id_barang;?>" class="btn btn-success"+
+                         style="font-size: 13px;"><i class="fa fa-edit"></i> Ubah</a>
+                        <a class="btn btn-danger tombol-hapus" style="font-size: 13px;" href="<?php echo base_url('nonelektronik/hapus/').$tb_nlk->id_barang;?>"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a> 
                       </td>
                       
                     </tr>   

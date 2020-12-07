@@ -8,7 +8,7 @@
         <div class="card-body">
 			<div class="box-body">
 
-				<form action="<?= base_url('nonelektronik/update_data'); ?>" method="post" id="form-submit">
+				<form action="<?= base_url('nonelektronik/update_data/' . $id_barang); ?>" method="post" id="form-submit">
 					
 					<div class="form-group row">
 				    <div class="col-sm-10">
@@ -19,10 +19,11 @@
 				  <div class="form-group row">
 				    <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang:</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $tb_nonelektronik->nama_barang ?>">
+				      <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<?= $tb_nonelektronik->nama_barang  ?>">
+				      <?= form_error('nama_barang', '<small class="text-danger pl-2">', '</small>');  ?>
 				    </div>
 				  </div>
-				   <div class="form-group row">
+				   <!-- <div class="form-group row">
 				    <label for="kondisi_barang" class="col-sm-2 col-form-label">Kondisi Barang:</label>
 				    <div class="col-sm-10">
 				      <select name="kondisi_barang" class="form-control">
@@ -32,11 +33,35 @@
                       <option value="Tidak Layak" <?= $kelayakan == 'Tidak Layak' ? 'selected' : '' ?> > Tidak Layak </option>
                     </select>
 				    </div>
-				  </div>
+				  </div> -->
+				  <div class="form-group row">
+				    <label for="kondisi_barang" class="col-sm-2 col-form-label">Kondisi Barang:</label>
+				    <div class="col-sm-10">
+				      <!-- <select name="kondisi_barang" class="form-control">
+		              <option value="">.....</option>
+		              <option value="Layak"> Layak </option>
+		              <option value="Tidak Layak"> Tidak Layak </option>
+		            </select> -->
+		            <?php 
+		            	$pilihan = array(
+		            		'' => 'Pilih ....',
+		            		'layak' => 'layak',
+		            		'tidak layak' => 'tidak layak'
+		            	);
+		            	$attribut = array(
+		            		"class" => "form-control"
+		            	);
+		             ?>
+		            <?= form_dropdown('kondisi_barang', $pilihan, $tb_nonelektronik->kondisi_barang, $attribut) ?>
+		            <?= form_error('kondisi_barang', '<small class="text-danger pl-2">', '</small>');  ?>
+
+				    </div>
+				   </div>
 				   <div class="form-group row">
 				    <label for="jumlah" class="col-sm-2 col-form-label">Jumlah:</label>
 				    <div class="col-sm-10">
-				      <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah Barang..." value="<?php echo $tb_nonelektronik->jumlah; ?>">
+				      <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah Barang..." value="<?php echo $tb_nonelektronik->jumlah ?>">
+				      <?= form_error('jumlah', '<small class="text-danger pl-2">', '</small>');  ?>
 				    </div>
 				  </div>
 				  <div class="form-group row">
